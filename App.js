@@ -11,6 +11,12 @@ const handleAddTask = () =>{
   setTask(null)
 }
 
+const completeTask = (index)=>{
+  let itemsCopy = [...taskItems];
+  itemsCopy.splice(index,1);
+  setTaskItems(itemsCopy)
+}
+
   return (
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
@@ -18,7 +24,12 @@ const handleAddTask = () =>{
         <View style={styles.items}>
             {
               taskItems.map((item, index)=>{
-               return <Task key={index} text={item}></Task>
+               return(
+                <TouchableOpacity key={index} onPress={()=>completeTask(index)}>
+                  <Task  text={item}></Task>
+                </TouchableOpacity>
+              )
+               
               })
             }
         </View>
